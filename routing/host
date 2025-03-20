@@ -1,0 +1,27 @@
+# Step 1: Verify IP Forwarding
+    Ensure that your PC is configured to forward packets between interfaces.
+
+    Check if IP forwarding is enabled:
+        `cat /proc/sys/net/ipv4/ip_forward`
+
+    If it outputs 0, IP forwarding is disabled.
+    Enable it temporarily:
+        `sudo sysctl -w net.ipv4.ip_forward=1`
+
+    NOTE: To make it permanent, edit /etc/sysctl.conf and set:
+        `net.ipv4.ip_forward = 1`
+    
+    Then apply the changes:
+        `sudo sysctl -p`
+
+
+# Step 2: Check NAT (Masquerading) Rules
+    Check existing iptables rules:
+        `sudo iptables -t nat -L -v`
+
+    Add the NAT rule if missing:
+        `sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE`
+
+    Allow forwarded traffic: Add rules to allow forwarding between the interfaces:
+        `sudo iptables -A FORWARD -i wlp0s20f3 -o tun0 -j ACCEPT`
+        `sudo iptables -A FORWARD -i tun0 -o wlp0s20f3 -j ACCEPT`
