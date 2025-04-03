@@ -1,0 +1,12 @@
+
+|||        External          ||| -------- #<PC-ip>:<in-port>#||| ||| ------------ #<local-device-ip>:<dest-port>#|||Local Network device|||
+  (req to <PC-ip>:<in-port>)
+
+
+# Command
+  sudo iptables -t nat -A PREROUTING -p tcp --dport <in-port>          -j DNAT --to-destination <local-device-ip>:<dest-port>
+
+  # Exemplo
+      ## SSH
+          sudo iptables -t nat -A PREROUTING -p tcp --dport 8422          -j DNAT --to-destination 192.168.10.19:22
+          ssh <PC-ip> -p :8422 
