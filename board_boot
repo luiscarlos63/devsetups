@@ -1,0 +1,13 @@
+# From u-boot shell
+setenv bootargs console=ttyO0,115200 ${bootargs}              // Or "ttyS0" for newer versions
+saveenv
+
+# From user space
+sudo fw_setenv bootargs 'console=ttyO0,115200 ${bootargs}'
+
+Or if ${bootargs} is already there from Mender, just force prepend:
+sudo fw_setenv bootargs_prepend 'console=ttyO0,115200'
+
+
+# Permanent Fix in Yocto
+APPEND += "console=ttyO0,115200"
