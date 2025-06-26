@@ -8,6 +8,10 @@ sudo fw_setenv bootargs 'console=ttyO0,115200 ${bootargs}'
 Or if ${bootargs} is already there from Mender, just force prepend:
 sudo fw_setenv bootargs_prepend 'console=ttyO0,115200'
 
+Using mender:::::
+setenv bootargs console=ttyS0,115200n8 root=/dev/mmcblk1p2 rootfstype=ext4 rootwait
+                                              Careful setting the partition, depending the one it is being used
+
 
 # Permanent Fix in Yocto
 APPEND += "console=ttyO0,115200"
