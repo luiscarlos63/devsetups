@@ -23,14 +23,14 @@ CONFIG_USB_MUSB_AM335X=y
 You can confirme that the **usb0:** has the IP. 
 ```
    $ ifconfig usb0
+    usb0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+    inet 192.168.7.2  netmask 255.255.255.0  broadcast 192.168.7.255
 ```
 
 3. On server side, create **/etc/udhcpd.conf**. You can copy the file provided here
 2. Then:
 ```
     $ udhcpd -f -S /etc/udhcpd.conf &
-    usb0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-    inet 192.168.7.2  netmask 255.255.255.0  broadcast 192.168.7.255
 
 ```
 
