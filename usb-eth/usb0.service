@@ -1,0 +1,12 @@
+[Unit]
+Description=DNSmasq for usb0
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/rm -f /var/lib/misc/dnsmasq.leases
+ExecStart=/usr/sbin/dnsmasq --conf-file=/etc/dnsmasq.d/usb0.conf
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
