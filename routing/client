@@ -5,4 +5,7 @@
     OR
 
     Set HOST as Default Gateway
+        ip route add default via 192.168.10.13 dev eth0
+
+# To delete
         ip route del default via 192.168.10.13 dev eth0
